@@ -1,19 +1,32 @@
 import { View, Text, SafeAreaView, ScrollView, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import CustomInputField from '../../../compoments/app_components/InputFiled.component'
 import CustomButton from '../../../compoments/app_components/CustomButton.component'
+import { firebaseAuth } from '../../../environment/firebaseConfig'
 
 const LoginScreen = () => {
+    const [user, setUser] = useState({
+        email: '',
+        password: '',
+    })
+
+    const login = () => {
+        console.log('logging in');
+        firebaseAuth.login(user.email, user.password);
+    }
     return (
         <SafeAreaView >
             <ScrollView style={styles.mainBodyView}>
                 <View></View>
                 <Text style={styles.title} >Login</Text>
                 <Text style={styles.subTitle} >Enter your email and password</Text>
-                <CustomInputField hint={'Email'} />
-                <CustomInputField password={true} hint={'Password'} />
+                <CustomInputField onChageText={(val) => setUser({ ...user, email: val })} hint={'Email'} />
+                <CustomInputField onChageText={(val) => setUser({ ...user, password: val })} password={true} hint={'Password'} />
                 <Text style={styles.forgotStyles} >Forgot password?</Text>
-                <CustomButton text={'Login'} />
+                <CustomButton onTap={() => {
+                    login()
+                    console.log('ok')
+                }} text={'Login'} />
 
             </ScrollView>
         </SafeAreaView>

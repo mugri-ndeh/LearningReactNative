@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 
-const CustomInputField = ({ hint, password }) => {
+const CustomInputField = ({ hint, password, onChageText }) => {
     return (
         <View style={styles.inputContainer}>
             <Text>{hint}</Text>
-            <TextInput secureTextEntry={password} style={styles.inputField}></TextInput>
+            <TextInput onChangeText={onChageText} secureTextEntry={password} style={styles.inputField}></TextInput>
         </View>
     )
 }
@@ -13,7 +13,7 @@ const CustomInputField = ({ hint, password }) => {
 const styles = StyleSheet.create({
     inputField: {
         height: 40,
-        width: 365,
+        width: '98%',
         borderColor: '#7c7c7c',
         borderWidth: 1,
         borderRadius: 5,
