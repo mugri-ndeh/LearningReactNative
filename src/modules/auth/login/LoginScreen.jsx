@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react'
 import CustomInputField from '../../../compoments/app_components/InputFiled.component'
 import CustomButton from '../../../compoments/app_components/CustomButton.component'
 import { firebase } from '@react-native-firebase/auth'
-import { useSelector } from 'react-redux'
+
+import { loginMethod } from './LoginSlice'
+import store from '../../../redux/store'
 
 const LoginScreen = () => {
     const [user, setUser] = useState({
@@ -19,10 +21,12 @@ const LoginScreen = () => {
     // }, [isLoading])
 
 
-    const login = () => {
 
-        const auth = firebase.auth()
-        auth.createUserWithEmailAndPassword(user.email, user.password);
+    const login = () => {
+        store.dispatch(loginMethod())
+
+        // const auth = firebase.auth()
+        // auth.createUserWithEmailAndPassword(user.email, user.password);
     }
     return (
         <SafeAreaView >

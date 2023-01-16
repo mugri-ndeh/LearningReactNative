@@ -18,7 +18,26 @@ const auth = firebase.auth()
 export const authSlice = createSlice({
     name: 'authentication',
     initialState,
-    reducers: {
+    reducers:
+    {
+        validateFields: (state) => {
+            if (state.user.username === '') {
+                state.error = 'Please add a username'
+
+            }
+            if (state.user.email === '') {
+                state.error = 'please add a valid email'
+
+            }
+            if (state.user.phoneNumber === '') {
+                state.error = 'Please enter a phone number'
+
+            }
+            if (state.user.password.length < 5) {
+                state.error = 'password is too short'
+            }
+        },
+
         login: (state) => {
             state.loading = true;
             auth.signInWithEmailAndPassword(state.username, state.password).then(() => {
