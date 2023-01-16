@@ -30,6 +30,6 @@ export const loginSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount } = loginSlice.actions
 
-export default counterSlice.reducer
+export default loginSlice.reducer

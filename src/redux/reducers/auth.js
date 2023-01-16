@@ -13,7 +13,7 @@ const initialState = {
 }
 
 const auth = firebase.auth()
-const fireStore = firebase.firestore()
+// const fireStore = firebase.firestore()
 
 export const authSlice = createSlice({
     name: 'authentication',
@@ -50,4 +50,4 @@ export const authSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { login, signUp } = authSlice.actions
 
-export default counterSlice.reducer
+export default authSlice.reducer
