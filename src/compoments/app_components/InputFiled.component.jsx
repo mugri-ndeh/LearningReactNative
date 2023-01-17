@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
 
-const CustomInputField = ({ hint, password, onChageText }) => {
+const CustomInputField = ({ hint, password, onChageText, val }) => {
     return (
         <View style={styles.inputContainer}>
             <Text>{hint}</Text>
