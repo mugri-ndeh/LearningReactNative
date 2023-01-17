@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import CustomInputField from '../../../compoments/app_components/InputFiled.component'
 import CustomButton from '../../../compoments/app_components/CustomButton.component'
 import { useDispatch, useSelector } from 'react-redux'
-import { registerMethod } from './signUpSlice'
+import { registerMethod } from './SignUpSlice'
 import LoadingScreen from '../../../compoments/app_components/LoadingScreen'
 
 const SignUpScreen = () => {
