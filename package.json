@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-firebase/app": "^16.5.0",
     "@react-native-firebase/auth": "^16.5.0",
@@ -29,7 +30,8 @@
     "react-native-toast-message": "^2.1.5",
     "react-native-vector-icons": "^9.2.0",
     "react-navigation": "^4.4.4",
-    "react-redux": "^8.0.5"
+    "react-redux": "^8.0.5",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
