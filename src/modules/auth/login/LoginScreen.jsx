@@ -6,8 +6,8 @@ import CustomButton from '../../../compoments/app_components/CustomButton.compon
 import { loginMethod, reset } from './LoginSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingScreen from '../../../compoments/app_components/LoadingScreen'
-
-const LoginScreen = () => {
+import MyText from '../../../compoments/app_components/MyText'
+const LoginScreen = ({ navigation }) => {
     const [userL, setUser] = useState({
         email: '',
         password: '',
@@ -18,39 +18,56 @@ const LoginScreen = () => {
     useEffect(() => {
         if (loading) {
             console.log('is loading now')
-        } if (error !== '') {
-            console.log(error)
+
+
+        }
+    }, [loading])
+
+    useEffect(() => {
+
+        if (isSuccess) {
+            navigation.navigate('HomeScreen')
         }
 
         dispatch(reset())
 
-    }, [loading, error, dispatch])
+    }, [isSuccess])
+
+    useEffect(() => {
+        if (isError) {
+            console.log(error)
+        }
+
+
+        dispatch(reset())
+
+    }, [isError])
 
 
 
 
-    const { loading, user, error } = useSelector((state) => state.login)
+    const { loading, user, error, isSuccess, isError } = useSelector((state) => state.login)
 
     if (loading) {
         return <LoadingScreen message={'logging in..'} />
     }
 
     return (
-        <SafeAreaView >
+        <SafeAreaView style={styles.body}>
             <ScrollView style={styles.mainBodyView}>
                 <View>
-                    <Text>{'loading ' + loading + ' error ' + error} </Text>
+                    <Text>{'loading ' + loading + ' isError ' + isError + ' isSuccess ' + isSuccess} </Text>
                 </View>
-                <Text style={styles.title} >Login</Text>
-                <Text style={styles.subTitle} >Enter your email and password</Text>
+                <MyText style={styles.title} >Login</MyText>
+                <MyText style={styles.subTitle} >Enter your email and password</MyText>
                 <CustomInputField val={user.email} onChageText={(val) => setUser({ ...userL, email: val })} hint={'Email'} />
                 <CustomInputField val={user.password} onChageText={(val) => setUser({ ...userL, password: val })} password={true} hint={'Password'} />
-                <Text style={styles.forgotStyles} >Forgot password?</Text>
+                <MyText style={styles.forgotStyles} >Forgot password?</MyText>
                 <CustomButton onTap={() => {
                     dispatch(loginMethod(userL))
                 }} text={'Login'} />
 
-                <Text style={styles.already} >Don't have an account? Sign Up</Text>
+                <MyText onPress={() => { navigation.navigate('SignUpScreen') }} style={styles.already} >Don't have an account? Sign Up</MyText>
 
             </ScrollView>
         </SafeAreaView>
@@ -58,6 +75,10 @@ const LoginScreen = () => {
 }
 
 const styles = StyleSheet.create({
+    body: {
+        height: '100%',
+        justifyContent: 'center'
+    },
     mainBodyView: {
         paddingHorizontal: 10,
         paddingVertical: 10,

@@ -5,8 +5,10 @@ import CustomButton from '../../../compoments/app_components/CustomButton.compon
 import { useDispatch, useSelector } from 'react-redux'
 import { registerMethod } from './SignUpSlice'
 import LoadingScreen from '../../../compoments/app_components/LoadingScreen'
+import MyText from '../../../compoments/app_components/MyText'
 
-const SignUpScreen = () => {
+
+const SignUpScreen = ({ navigation }) => {
     const [userM, setUser] = useState({
         email: '',
         password: '',
@@ -17,22 +19,25 @@ const SignUpScreen = () => {
         if (loading) {
             console.log('is loading now')
         }
-        if (error !== '') {
+        if (isError) {
             console.log(error)
         }
+        if (isSuccess) {
+            navigator.navigate('HomeScreen')
+        }
 
-    }, [loading, error, dispatch])
+    }, [loading, isError, isSuccess, dispatch, navigation])
 
 
     const dispatch = useDispatch();
-    const { loading, user, error } = useSelector((state) => state.register)
+    const { loading, isError, isSuccess, error } = useSelector((state) => state.register)
 
     return (
         <SafeAreaView >
             {loading ? <LoadingScreen message={'Creating account please wait'} /> : <ScrollView style={styles.mainBodyView}>
                 <View></View>
-                <Text style={styles.title} >Sign up</Text>
-                <Text style={styles.subTitle} >Enter your credentials to continue</Text>
+                <MyText style={styles.title} text={'Sign up'} />
+                <MyText style={styles.subTitle} text={'Enter your credentials to continue'} />
                 <CustomInputField onChageText={(val) => setUser({ ...userM, username: val })} hint={'Username'} />
                 <CustomInputField onChageText={(val) => setUser({ ...userM, email: val })} hint={'Email'} />
                 <CustomInputField onChageText={(val) => setUser({ ...userM, password: val })} password={true} hint={'Password'} />
@@ -40,7 +45,7 @@ const SignUpScreen = () => {
                 <CustomButton onTap={() => {
                     dispatch(registerMethod(userM))
                 }} text={'Sign Up'} />
-                <Text style={styles.already} >Already have an account? Login</Text>
+                <Mytext onPress={() => navigation.navigate('LoginScreen')} style={styles.already} text={'Already have an account? Login'} />
             </ScrollView>}
         </SafeAreaView>
     )

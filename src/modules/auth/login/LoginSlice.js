@@ -17,10 +17,11 @@ const initialState = {
 
 export const loginMethod = login = createAsyncThunk('user/login', async (user, thunkAPI) => {
     try {
-        (await auth().signInWithEmailAndPassword(user.email, user.password))
+        const userId = (await auth().signInWithEmailAndPassword(user.email, user.password))
 
-        // const new_user = await firestore().collection('users').doc(userId).get();
-        return { user: '' }
+        // const new_user = await firestore().collection('users').doc(userId).get()
+        // console.log(new_user.exists)
+        return user;
     }
     catch (e) {
         console.log('an errror occured here')
@@ -46,19 +47,16 @@ export const loginSlice = createSlice({
 
         })
         builder.addCase(login.fulfilled, (state, action) => {
-            // state.loading = false
-            // state.user = action.payload
-            // state.error = ''
             console.log('OK to go')
-
-            return { ...state, loading: false, error: 'none' };
+            return { ...state, loading: false, isError: false, isSuccess: true };
 
 
         })
         builder.addCase(login.rejected, (state, action) => {
-            // state.loading = false
-            // state.error = action.payload
-            return { ...state, loading: false, error: action.payload };
+            return {
+                ...state, loading: false, error: action.payload, isError: true,
+                isSuccess: false,
+            };
 
 
         })

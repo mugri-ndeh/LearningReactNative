@@ -10,7 +10,9 @@ const initialState = {
         email: '',
         password: '',
     },
-    error: ''
+    error: '',
+    isError: false,
+    isSuccess: false,
 }
 
 
@@ -37,6 +39,8 @@ export const registerSlice = createSlice({
                 ...state,
                 loading: false,
                 error: '',
+                isError: false,
+                isSuccess: false,
                 user: {
                     username: '',
                     email: '',
@@ -52,10 +56,16 @@ export const registerSlice = createSlice({
             return { ...state, loading: true };
         })
         builder.addCase(register.fulfilled, (state, action) => {
-            return { ...state, loading: false, error: 'none' };
+            return {
+                ...state, loading: false, isError: false,
+                isSuccess: true,
+            };
         })
         builder.addCase(register.rejected, (state, action) => {
-            return { ...state, loading: false, error: action.payload };
+            return {
+                ...state, loading: false, error: action.payload, isError: true,
+                isSuccess: false,
+            };
 
 
         })

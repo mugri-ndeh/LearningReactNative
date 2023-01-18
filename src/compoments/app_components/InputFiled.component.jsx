@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
         borderColor: '#7c7c7c',
         borderWidth: 1,
         borderRadius: 5,
+        color: '#000'
+
     },
     hintStyle: {
         fontSize: 16,
@@ -27,6 +29,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
+    },
+    text: {
     }
 })
 
