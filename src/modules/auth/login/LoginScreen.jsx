@@ -16,12 +16,12 @@ const LoginScreen = ({ navigation }) => {
     })
 
     const dispatch = useDispatch()
+    const { loading, user, error, isSuccess, isError } = useSelector((state) => state.login)
+
 
     useEffect(() => {
         if (loading) {
             console.log('is loading now')
-
-
         }
     }, [loading])
 
@@ -39,8 +39,6 @@ const LoginScreen = ({ navigation }) => {
         if (isError) {
             console.log(error)
         }
-
-
         dispatch(reset())
 
     }, [isError])
@@ -48,7 +46,6 @@ const LoginScreen = ({ navigation }) => {
 
 
 
-    const { loading, user, error, isSuccess, isError } = useSelector((state) => state.login)
 
     if (loading) {
         return <LoadingScreen message={'logging in..'} />

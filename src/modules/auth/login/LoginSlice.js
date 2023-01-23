@@ -17,11 +17,10 @@ const initialState = {
 
 export const loginMethod = login = createAsyncThunk('user/login', async (user, thunkAPI) => {
     try {
-        const userId = (await auth().signInWithEmailAndPassword(user.email, user.password))
+        const userId = (await auth().signInWithEmailAndPassword(user.email, user.password)).user.uid
+        const new_user = await firestore().collection('users').doc(userId).get()
 
-        // const new_user = await firestore().collection('users').doc(userId).get()
-        // console.log(new_user.exists)
-        return user;
+        return new_user.data();
     }
     catch (e) {
         console.log('an errror occured here')

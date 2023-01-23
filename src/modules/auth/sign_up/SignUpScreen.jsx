@@ -15,6 +15,8 @@ const SignUpScreen = ({ navigation }) => {
         password: '',
         username: ''
     })
+    const dispatch = useDispatch();
+    const { loading, isError, isSuccess, error } = useSelector((state) => state.register)
 
     useEffect(() => {
         if (loading) {
@@ -30,8 +32,7 @@ const SignUpScreen = ({ navigation }) => {
     }, [loading, isError, isSuccess, dispatch, navigation])
 
 
-    const dispatch = useDispatch();
-    const { loading, isError, isSuccess, error } = useSelector((state) => state.register)
+
 
     return (
         <ImageBackground source={bg} resizeMode="cover" style={{ backgroundColor: '#fff' }}>

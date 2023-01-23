@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import React, { useEffect } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import React from 'react'
 import SearchBar from '../../compoments/app_components/SearchBar'
 import { ScrollView } from 'react-native-gesture-handler'
 import { AppColors } from '../../utils/app_colors'
@@ -10,11 +9,6 @@ import ProductCard from '../../compoments/app_components/ProductCard'
 import { productsHomeE, productsHomeG, productsHomeB } from '../../utils/data'
 
 const HomeScreen = () => {
-
-    // useEffect(() => {
-
-
-    // },)
 
     return (
         <ScrollView style={AppStyles.body}>

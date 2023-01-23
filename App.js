@@ -12,6 +12,8 @@ import SignUpScreen from './src/modules/auth/sign_up/SignUpScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/modules/home/Home';
 import { createStackNavigator } from '@react-navigation/stack';
+import BaseScreen from './src/modules/base/BaseScreen';
+import AppStart from './src/modules/AppStart';
 
 
 
@@ -20,15 +22,16 @@ const App = () => {
 
   return (
 
-    <NavigationContainer>
-      <Provider store={store}>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
+    // <NavigationContainer>
+    <Provider store={store}>
+      {/* <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="LoginScreen" component={LoginScreen} />
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-        </Stack.Navigator>
-      </Provider>
-    </NavigationContainer>
+        </Stack.Navigator> */}
+      <AppStart />
+    </Provider>
+    // </NavigationContainer>
     /* </IconComponentProvider> */
 
   );
