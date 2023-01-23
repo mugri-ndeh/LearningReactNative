@@ -1,11 +1,12 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, StyleSheet, ActivityIndicator, ImageBackground, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import CustomInputField from '../../../compoments/app_components/InputFiled.component'
 import CustomButton from '../../../compoments/app_components/CustomButton.component'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerMethod } from './SignUpSlice'
 import LoadingScreen from '../../../compoments/app_components/LoadingScreen'
-import MyText from '../../../compoments/app_components/MyText'
+const bg = require('../../../../assets/images/bg.png')
+
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -33,34 +34,47 @@ const SignUpScreen = ({ navigation }) => {
     const { loading, isError, isSuccess, error } = useSelector((state) => state.register)
 
     return (
-        <SafeAreaView >
-            {loading ? <LoadingScreen message={'Creating account please wait'} /> : <ScrollView style={styles.mainBodyView}>
-                <View></View>
-                <MyText style={styles.title} text={'Sign up'} />
-                <MyText style={styles.subTitle} text={'Enter your credentials to continue'} />
-                <CustomInputField onChageText={(val) => setUser({ ...userM, username: val })} hint={'Username'} />
-                <CustomInputField onChageText={(val) => setUser({ ...userM, email: val })} hint={'Email'} />
-                <CustomInputField onChageText={(val) => setUser({ ...userM, password: val })} password={true} hint={'Password'} />
-                <View style={styles.sizedbox} />
-                <CustomButton onTap={() => {
-                    dispatch(registerMethod(userM))
-                }} text={'Sign Up'} />
-                <Mytext onPress={() => navigation.navigate('LoginScreen')} style={styles.already} text={'Already have an account? Login'} />
-            </ScrollView>}
-        </SafeAreaView>
+        <ImageBackground source={bg} resizeMode="cover" style={{ backgroundColor: '#fff' }}>
+            <SafeAreaView >
+                {loading ? <LoadingScreen message={'Creating account please wait'} /> : <ScrollView style={styles.mainBodyView}>
+                    <Image style={styles.carrotStyle} source={require('../../../../assets/icons/carrot.png')} />
+                    <Text style={styles.title}>Sign up</Text>
+                    <Text style={styles.subTitle}>Enter your credentials to continue</Text>
+                    <CustomInputField onChageText={(val) => setUser({ ...userM, username: val })} hint={'Username'} />
+                    <CustomInputField onChageText={(val) => setUser({ ...userM, email: val })} hint={'Email'} />
+                    <CustomInputField onChageText={(val) => setUser({ ...userM, password: val })} password={true} hint={'Password'} />
+                    <View style={styles.sizedbox} />
+                    <CustomButton onTap={() => {
+                        dispatch(registerMethod(userM))
+                    }} text={'Sign Up'} />
+                    <Text onPress={() => navigation.navigate('LoginScreen')} style={styles.already}>Already have an account? Login</Text>
+                </ScrollView>}
+            </SafeAreaView>
+        </ImageBackground>
+
     )
 }
 
 const styles = StyleSheet.create({
     mainBodyView: {
+        height: '100%',
         paddingHorizontal: 10,
         paddingVertical: 10,
+        fontFamily: 'Poppins-Regular'
     },
     title: {
         fontSize: 26,
         fontWeight: 'bold',
         color: '#000',
         marginTop: 200,
+        fontFamily: 'Poppins-Regular'
+
+    },
+
+    carrotStyle: {
+        alignSelf: 'center',
+        height: 50,
+        width: 50,
     },
 
     subTitle: {

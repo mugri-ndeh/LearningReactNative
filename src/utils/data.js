@@ -1,0 +1,54 @@
+export const productsHomeE = [
+    {
+        index: 0,
+        name: 'Organic Bananas',
+        price: '$4.99',
+        subtitle: '1kg, priceg',
+        image: require('../../assets/images/banana.png'),
+    },
+    {
+        index: 1,
+        name: 'Red Apple',
+        price: '$4.99',
+        subtitle: '1kg, priceg',
+        image: require('../../assets/images/apple.png'),
+    },
+
+]
+
+
+export const productsHomeB = [
+    {
+        index: 0,
+        name: 'Bell Red Pepper',
+        price: '$4.99',
+        subtitle: '1kg, priceg',
+        image: require('../../assets/images/pepper.png'),
+    },
+    {
+        index: 1,
+        name: 'Ginger',
+        price: '',
+        subtitle: '250gm, priceg',
+        image: require('../../assets/images/ginger.png'),
+    },
+
+]
+
+export const productsHomeG = [
+    {
+        index: 0,
+        name: 'Beef Bone',
+        price: '$4.99',
+        subtitle: '1kg, priceg',
+        image: require('../../assets/images/meat.png'),
+    },
+    {
+        index: 1,
+        name: 'Brioler Chicken',
+        price: '$4.99',
+        subtitle: '1kg, priceg',
+        image: require('../../assets/images/chicken.png'),
+    },
+
+]

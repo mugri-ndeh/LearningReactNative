@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, ScrollView, StyleSheet, ActivityIndicator } from 'react-native'
+import { Text, ScrollView, StyleSheet, ImageBackground, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import CustomInputField from '../../../compoments/app_components/InputFiled.component'
 import CustomButton from '../../../compoments/app_components/CustomButton.component'
@@ -6,7 +6,9 @@ import CustomButton from '../../../compoments/app_components/CustomButton.compon
 import { loginMethod, reset } from './LoginSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import LoadingScreen from '../../../compoments/app_components/LoadingScreen'
-import MyText from '../../../compoments/app_components/MyText'
+const bg = require('../../../../assets/images/bg.png')
+
+
 const LoginScreen = ({ navigation }) => {
     const [userL, setUser] = useState({
         email: '',
@@ -53,53 +55,59 @@ const LoginScreen = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={styles.body}>
-            <ScrollView style={styles.mainBodyView}>
-                <View>
-                    <Text>{'loading ' + loading + ' isError ' + isError + ' isSuccess ' + isSuccess} </Text>
-                </View>
-                <MyText style={styles.title} >Login</MyText>
-                <MyText style={styles.subTitle} >Enter your email and password</MyText>
+        <ImageBackground source={bg} resizeMode="cover" style={{ backgroundColor: '#fff' }}>
+
+            <ScrollView style={styles.body}>
+                <Image style={styles.carrotStyle} source={require('../../../../assets/icons/carrot.png')} />
+                <Text style={styles.title} >Login</Text>
+                <Text style={styles.subTitle} >Enter your email and password</Text>
                 <CustomInputField val={user.email} onChageText={(val) => setUser({ ...userL, email: val })} hint={'Email'} />
                 <CustomInputField val={user.password} onChageText={(val) => setUser({ ...userL, password: val })} password={true} hint={'Password'} />
-                <MyText style={styles.forgotStyles} >Forgot password?</MyText>
+                <Text style={styles.forgotStyles} >Forgot password?</Text>
                 <CustomButton onTap={() => {
                     dispatch(loginMethod(userL))
                 }} text={'Login'} />
 
-                <MyText onPress={() => { navigation.navigate('SignUpScreen') }} style={styles.already} >Don't have an account? Sign Up</MyText>
-
+                <Text onPress={() => { navigation.navigate('SignUpScreen') }} style={styles.already} >Don't have an account? Sign Up</Text>
             </ScrollView>
-        </SafeAreaView>
+        </ImageBackground>
+
+
     )
 }
 
 const styles = StyleSheet.create({
     body: {
         height: '100%',
-        justifyContent: 'center'
-    },
-    mainBodyView: {
         paddingHorizontal: 10,
         paddingVertical: 10,
+        // backgroundColor: '#fff'
     },
+
     title: {
         fontSize: 26,
         fontWeight: 'bold',
         color: '#000',
         marginTop: 200,
+        fontFamily: 'Poppins-Regular'
     },
-
+    carrotStyle: {
+        alignSelf: 'center',
+        height: 50,
+        width: 50,
+    },
     subTitle: {
         color: '#7c7c7c',
         fontSize: 16,
         marginTop: 5,
         marginBottom: 30,
+        fontFamily: 'Poppins-Regular'
     },
 
     forgotStyles: {
         alignSelf: 'flex-end',
         marginVertical: 8,
+        fontFamily: 'Poppins-Regular'
     },
     already: {
         marginTop: 20,

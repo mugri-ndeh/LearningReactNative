@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import React from 'react'
+import { AppColors } from '../../utils/app_colors'
 
 const CustomInputField = ({ hint, password, onChageText, val }) => {
     return (
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     inputField: {
         height: 40,
         width: '98%',
-        borderColor: '#7c7c7c',
+        borderColor: AppColors.grey,
         borderWidth: 1,
         borderRadius: 5,
         color: '#000'

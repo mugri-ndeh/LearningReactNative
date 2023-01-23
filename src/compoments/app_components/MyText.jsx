@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
+import { Text } from '@react-native-material/core';
 
 
 const MyText = ({ text }) => {
@@ -12,8 +13,8 @@ const MyText = ({ text }) => {
 
 const styles = StyleSheet.create({
     text: {
-        color: 'black',
-        fontFamily: 'Poppins-Black'
+        color: 'red',
+        fontFamily: 'Poppins-Regular'
     }
 })
 
