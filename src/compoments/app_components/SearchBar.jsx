@@ -8,7 +8,7 @@ const SearchBar = () => {
     return (
         <View style={styles.searchContainer}>
             <Icon name='search' size={20} color={AppColors.black} />
-            <TextInput style={styles.inputContainerStyle} variant='standard' placeholder="Search Store"  ></TextInput>
+            <TextInput placeholderTextColor={AppColors.grey_text} style={styles.inputContainerStyle} variant='standard' placeholder="Search Store"  ></TextInput>
         </View>
     )
 

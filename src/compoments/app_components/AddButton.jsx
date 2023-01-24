@@ -4,9 +4,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Feather'
 import { AppColors } from '../../utils/app_colors'
 
-const AddButton = () => {
+const AddButton = ({ onTap }) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onTap}>
             <Icon name='plus' size={17} color={AppColors.white} style={styles.btn} />
         </TouchableOpacity>
     )

@@ -7,8 +7,18 @@ import { AppStyles } from '../../utils/styles'
 import Icon from 'react-native-vector-icons/Feather'
 import ProductCard from '../../compoments/app_components/ProductCard'
 import { productsHomeE, productsHomeG, productsHomeB } from '../../utils/data'
+import { useEffect } from 'react'
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+
+    const tapped = false
+
+    const gotoScreen = item => {
+        // useEffect(() => {
+        navigation.navigate('HomeDetail', { product: item })
+        // }, [tapped])
+
+    }
 
     return (
         <ScrollView style={AppStyles.body}>
@@ -25,7 +35,7 @@ const HomeScreen = () => {
             </View>
             <ScrollView nestedScrollEnabled={true} horizontal >
                 {productsHomeE.map((item, index) => {
-                    return (<ProductCard key={index} product={item} />)
+                    return (<ProductCard onTap={() => gotoScreen(item)} key={index} product={item} />)
                 })}
             </ScrollView>
             <View style={{ ...AppStyles.row, ...styles.row }}>
@@ -35,7 +45,7 @@ const HomeScreen = () => {
 
             <ScrollView nestedScrollEnabled={true} horizontal >
                 {productsHomeB.map((item, index) => {
-                    return (<ProductCard key={index} product={item} />)
+                    return (<ProductCard onTap={() => gotoScreen(item)} key={index} product={item} />)
                 })}
             </ScrollView>
 
@@ -45,7 +55,7 @@ const HomeScreen = () => {
             </View>
             <ScrollView nestedScrollEnabled={true} horizontal >
                 {productsHomeG.map((item, index) => {
-                    return (<ProductCard key={index} product={item} />)
+                    return (<ProductCard onTap={() => gotoScreen(item)} key={index} product={item} />)
                 })}
             </ScrollView>
         </ScrollView>
