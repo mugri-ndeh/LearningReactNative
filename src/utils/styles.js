@@ -20,8 +20,8 @@ export const AppStyles = StyleSheet.create({
         alignSelf: 'center',
     },
     column: {
-        flexDirection: 'row',
-        alignItems: 'flex-start',
+        flexDirection: 'column',
+        // alignItems: 'flex-start',
     },
     headingText: {
         fontStyle: 'Poppins-Regular',

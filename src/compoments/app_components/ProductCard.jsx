@@ -3,19 +3,29 @@ import React from 'react'
 import AddButton from './AddButton'
 import { AppColors } from '../../utils/app_colors'
 import { AppStyles } from '../../utils/styles'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useDispatch, useSelector } from 'react-redux'
+import { addCart } from '../../redux/reducers/cart'
 const size = Dimensions.get('window')
 
-const ProductCard = ({ product, onTap }) => (
-    <View style={cardStyles.container}>
-        <Image style={cardStyles.image} source={product.image} />
-        <Text style={{ ...AppStyles.bodyText, ...cardStyles.text }}> {product.name} </Text>
-        <Text style={{ ...AppStyles.bodyText, ...cardStyles.subtile }}> {product.subtitle} </Text>
-        <View style={cardStyles.row}>
-            <Text style={cardStyles.price}>$4.99</Text>
-            <AddButton onTap={onTap} />
-        </View>
-    </View>
-)
+const ProductCard = ({ product, onTap }) => {
+    const dispatch = useDispatch()
+
+    const { cart } = useSelector(state => state.cart)
+
+    return (
+
+        <TouchableOpacity onPress={onTap} style={cardStyles.container}>
+            <Image style={cardStyles.image} source={product.image} />
+            <Text style={{ ...AppStyles.bodyText, ...cardStyles.text }}> {product.name} </Text>
+            <Text style={{ ...AppStyles.bodyText, ...cardStyles.subtile }}> {product.subtitle} </Text>
+            <View style={cardStyles.row}>
+                <Text style={cardStyles.price}>$4.99</Text>
+                <AddButton onTap={() => { dispatch(addCart(product)) }} />
+            </View>
+        </TouchableOpacity>
+    )
+}
 
 const cardStyles = StyleSheet.create({
     container: {

@@ -4,9 +4,30 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { AppColors } from '../../utils/app_colors'
 import { AppStyles } from '../../utils/styles'
 import CustomButton from '../../compoments/app_components/CustomButton.component'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { addFavourite, checkFav, removeFavourite } from '../../redux/reducers/favourites'
+import { addCart } from '../../redux/reducers/cart'
 
 const HomeDetail = ({ navigation, route }) => {
     const { product } = route.params
+
+    useEffect(() => {
+        dispatch(checkFav())
+    }, [])
+
+    const isFav = (prod, items) => {
+        if (items.some(e => e.name === prod.name)) {
+            return true
+        }
+        return false
+    }
+
+    const dispatch = useDispatch()
+    // const dispatchCart = useDispatch()
+    const { favourites } = useSelector(state => state.favourites)
+    // const { cart } = useSelector(state => state.cart)
+
     return (
         <ScrollView style={{ ...AppStyles.body, paddingHorizontal: 0 }} >
             <View style={styles.topContainer}>
@@ -24,7 +45,12 @@ const HomeDetail = ({ navigation, route }) => {
                         <Text style={styles.big_heading}>{product.name}</Text>
                         <Text style={{ ...styles.littleText, fontSize: 16, fontWeight: 'bold' }}>{product.subtitle}</Text>
                     </View>
-                    <Icon name='ios-heart-outline' size={25} color={AppColors.black} />
+                    <Icon onPress={() => {
+                        isFav(product, favourites) ?
+                            dispatch(removeFavourite(product)) :
+                            dispatch(addFavourite(product))
+                        console.log('MERDE')
+                    }} name='ios-heart-outline' size={25} color={isFav(product, favourites) ? 'red' : AppColors.black} />
                 </View>
                 <View style={styles.priceRow}>
                     <View style={styles.numberRow}>
@@ -57,7 +83,10 @@ const HomeDetail = ({ navigation, route }) => {
                         <Icon name='ios-arrow-forward' size={25} color={AppColors.black} />
                     </View>
                 </View>
-                <CustomButton style={{ marginTop: 20, width: '100%', marginBottom: 15 }} onTap={() => { }} text={'Add To Basket'} />
+                <CustomButton style={{ marginTop: 20, width: '100%', marginBottom: 15 }} onTap={
+                    () => { dispatch(addCart(product)) }
+                }
+                    text={'Add To Basket'} />
             </View>
 
         </ScrollView>
